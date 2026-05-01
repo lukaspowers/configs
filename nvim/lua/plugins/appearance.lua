@@ -34,9 +34,6 @@ return {
         lazy = false,
         name = "onedark",
         priority = 1000,
-        opts = {
-            style = 'deep'
-        },
         config = function()
             require("onedark").setup({
                 -- Style Options: "dark", "darker", "cool", "deep", "warm", "warmer", "light"

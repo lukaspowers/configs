@@ -1,10 +1,9 @@
 -- SETUP TELESCOPE FOR FINDING STUFF AND OPENING FILES.
 return {
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'BurntSushi/ripgrep'
         },
         config = function()
             local builtin = require('telescope.builtin')

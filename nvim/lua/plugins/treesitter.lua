@@ -1,23 +1,19 @@
 -- CONFIGURE TREESITTER FOR DIFFERENT PROGRAMMING LANGUAGES.
 return {
     'nvim-treesitter/nvim-treesitter',
-    built = ':TSUpdate',
+    lazy = false,
+    build = ':TSUpdate',
     config = function()
-        require("nvim-treesitter.configs").setup({
-
-            ensure_installed = {
-                "lua",
-                "c",
-                "vim",
-                "vimdoc",
-                "typescript",
-                "python"
-            },
-            highlight = { enable = true },
-            indent = { enable = true }
+        require('nvim-treesitter').install({
+            'lua', 'c', 'vim', 'vimdoc', 'typescript', 'tsx', 'python', 'go', 'rust', 'java'
         })
 
-        -- Rename variables shortcut.
-        vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, { desc = "Rename variable" })
+        vim.api.nvim_create_autocmd('FileType', {
+            callback = function()
+                pcall(vim.treesitter.start)
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end,
+        })
+
     end
 }

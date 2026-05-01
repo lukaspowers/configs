@@ -24,10 +24,11 @@ return {
         }
 
         local handle = io.popen('fortune')
-        local fortune = handle:read("*a")
-        handle:close()
-
-        dashboard.section.footer.val = fortune
+        if handle then
+            local fortune = handle:read("*a")
+            handle:close()
+            dashboard.section.footer.val = fortune
+        end
         alpha.setup(dashboard.opts)
     end,
 }
